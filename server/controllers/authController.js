@@ -4,6 +4,9 @@ const db = require("../models");
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
+
+        console.log(req.body);
+        
         const user = await db.User.findOne({
             where: { email },
             include: [{ model: db.Role }],
