@@ -19,6 +19,7 @@ import { EditComponent as MessagesEditComponent } from './pages/dashboard/messag
 import { CreateComponent as MessagesCreateComponent } from './pages/dashboard/messages/create/create.component';
 import { ErrorValidationMessageComponent } from './components/error-validation-message/error-validation-message.component';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SendEmailComponent } from './pages/send-email/send-email.component';
     UsersCreateComponent,
     ErrorValidationMessageComponent,
     SendEmailComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule,

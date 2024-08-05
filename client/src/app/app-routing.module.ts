@@ -12,6 +12,10 @@ import { EditComponent as MessagesEditComponent } from './pages/dashboard/messag
 import { CreateComponent as ClientsCreateComponent } from './pages/dashboard/clients/create/create.component';
 import { CreateComponent as MessagesCreateComponent } from './pages/dashboard/messages/create/create.component';
 import { SendEmailComponent } from './pages/send-email/send-email.component';
+import { AuthGuardGuard } from './guards/auth-guard.guard';
+import { AdminGuardGuard } from './guards/admin-guard.guard';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import { LogedInGuardGuard } from './guards/loged-in-guard.guard';
 
 const routes: Routes = [
   {
@@ -29,10 +33,11 @@ const routes: Routes = [
       { path: 'messages/:id', component: MessagesEditComponent },
       { path: '', redirectTo: 'users', pathMatch: 'full' },
     ],
+    canActivate: [AuthGuardGuard, AdminGuardGuard],
   },
   { path: 'send-email', component: SendEmailComponent },
-
-  { path: '', component: LoginComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: '', component: LoginComponent, canActivate: [LogedInGuardGuard] },
 ];
 
 @NgModule({

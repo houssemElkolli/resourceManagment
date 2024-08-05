@@ -13,13 +13,20 @@ export class DashboardComponent {
   constructor(private router: Router) {}
   open: boolean = false;
   title = 'DashBoard';
+  private tokenKey = 'authToken';
+  private userEmail = 'user';
 
   toggleMenu() {
     this.open = !this.open;
   }
 
-  linkAction() {
-    console.log('url pressed');
-    //this.router.navigate(['/url'])
+  linkAction(url: string) {
+    this.router.navigate([url]);
+  }
+
+  logout() {
+    sessionStorage.removeItem(this.tokenKey);
+    sessionStorage.removeItem(this.userEmail);
+    this.router.navigate(['/']);
   }
 }

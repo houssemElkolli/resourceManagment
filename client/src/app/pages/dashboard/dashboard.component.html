@@ -21,7 +21,7 @@
       <ul class="text-black font-sans">
         <li
           class="flex gap-3 cursor-pointer p-2 hover:p-2 hover:bg-indigo-500 hover:text-white rounded-md"
-          (click)="linkAction()"
+          (click)="linkAction('/dashboard/users')"
           [ngClass]="open ? 'justify-start' : 'justify-between'"
         >
           <span [ngClass]="open ? 'block' : 'hidden'">U...</span>
@@ -32,23 +32,27 @@
 
         <li
           class="flex gap-3 cursor-pointer p-2 hover:p-2 hover:bg-indigo-500 hover:text-white rounded-md"
-          (click)="linkAction()"
+          (click)="linkAction('/dashboard/clients')"
           [ngClass]="open ? 'justify-start' : 'justify-between'"
         >
           <span [ngClass]="open ? 'block' : 'hidden'">C...</span>
-          <a routerLink="users" [ngClass]="open ? 'hidden' : 'block'"
-            >Client Managment</a
-          >
+          <span [ngClass]="open ? 'hidden' : 'block'">Client Managment</span>
         </li>
         <li
           class="flex gap-3 cursor-pointer p-2 hover:p-2 hover:bg-indigo-500 hover:text-white rounded-md"
-          (click)="linkAction()"
+          (click)="linkAction('/dashboard/messages')"
           [ngClass]="open ? 'justify-start' : 'justify-between'"
         >
           <span [ngClass]="open ? 'block' : 'hidden'">M...</span>
-          <a routerLink="users" [ngClass]="open ? 'hidden' : 'block'"
-            >Messages Managment</a
-          >
+          <span [ngClass]="open ? 'hidden' : 'block'">Messages Managment</span>
+        </li>
+        <li
+          class="flex gap-3 cursor-pointer p-2 hover:p-2 hover:bg-indigo-500 hover:text-white rounded-md"
+          (click)="logout()"
+          [ngClass]="open ? 'justify-start' : 'justify-between'"
+        >
+          <span [ngClass]="open ? 'block' : 'hidden'">L...</span>
+          <span [ngClass]="open ? 'hidden' : 'block'">Log out</span>
         </li>
       </ul>
     </div>

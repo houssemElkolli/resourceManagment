@@ -9,14 +9,23 @@ import { catchError, Observable, throwError } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class EditService {
   constructor(private http: HttpClient) {}
+
+  public headers = new HttpHeaders({
+    Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+  });
+
   edit(id: number): Observable<any> {
     return this.http
-      .get<any>('http://localhost:3001/messages/' + id)
+      .get<any>('http://localhost:3001/messages/' + id, {
+        headers: this.headers,
+      })
       .pipe(catchError(this.handleError));
   }
   update(data: any, id: number): Observable<any> {
     return this.http
-      .put<any>('http://localhost:3001/messages/' + id, data)
+      .put<any>('http://localhost:3001/messages/' + id, data, {
+        headers: this.headers,
+      })
       .pipe(catchError(this.handleError));
   }
 

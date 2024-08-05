@@ -11,8 +11,11 @@ export class CreateService {
   constructor(private http: HttpClient) {}
 
   create(data: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${sessionStorage.getItem('authToken')}`, // Replace with your token retrieval logic
+    });
     return this.http
-      .post<any>('http://localhost:3001/clients', data)
+      .post<any>('http://localhost:3001/clients', data, { headers })
       .pipe(catchError(this.handleError));
   }
 

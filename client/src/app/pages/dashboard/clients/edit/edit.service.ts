@@ -10,13 +10,19 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class EditService {
   constructor(private http: HttpClient) {}
   edit(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${sessionStorage.getItem('authToken')}`, // Replace with your token retrieval logic
+    });
     return this.http
-      .get<any>('http://localhost:3001/clients/' + id)
+      .get<any>('http://localhost:3001/clients/' + id, { headers })
       .pipe(catchError(this.handleError));
   }
   update(data: any, id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${sessionStorage.getItem('authToken')}`, // Replace with your token retrieval logic
+    });
     return this.http
-      .put<any>('http://localhost:3001/clients/' + id, data)
+      .put<any>('http://localhost:3001/clients/' + id, data, { headers })
       .pipe(catchError(this.handleError));
   }
 
