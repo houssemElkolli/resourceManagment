@@ -12,7 +12,7 @@ const isAdmin = require("../middleware/isAdmin");
 
 const router = express.Router({ mergeParams: true });
 
-// router.use(authCheckToken, isAdmin);
+router.use(authCheckToken, isAdmin);
 router.get("/", findAll);
 router.get("/getEmail", getAllEmail);
 router.get("/:id([0-9]+)", findOne);
