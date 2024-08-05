@@ -3,10 +3,12 @@ const bcrypt = require("bcrypt");
 
 async function findAll(req, res) {
     try {
-        const users = await db.User.findAll();
+        const users = await db.User.findAll({
+            attributes: { exclude: ["password"] },
+        });
 
         if (users.length === 0) {
-            return res.status(404).json({
+            return res.status(200).json({
                 message: "no data!",
             });
         }
@@ -21,7 +23,10 @@ async function findAll(req, res) {
 async function findOne(req, res) {
     try {
         const { id } = req.params;
-        const user = await db.User.findOne({ where: { id } });
+        const user = await db.User.findOne({
+            where: { id },
+            attributes: { exclude: ["password"] },
+        });
 
         if (!user) {
             return res.status(404).json({
@@ -56,6 +61,9 @@ async function create(req, res) {
             data: user,
         });
     } catch (error) {
+        if (error.name === "SequelizeValidationError") {
+            return res.status(400).json(error.message);
+        }
         res.status(500).json(error);
     }
 }
@@ -91,6 +99,9 @@ async function update(req, res) {
             data: user,
         });
     } catch (error) {
+        if (error.name === "SequelizeValidationError") {
+            return res.status(400).json(error.message);
+        }
         res.status(500).json(error);
     }
 }

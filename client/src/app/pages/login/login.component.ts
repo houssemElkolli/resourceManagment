@@ -10,17 +10,15 @@ export class LoginComponent {
   data: any;
   generalInfoForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private apiService: LoginService) {
+  constructor(private fb: FormBuilder, private loginService: LoginService) {
     this.generalInfoForm = this.fb.group({
-      email: [''],
-      password: [''],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
   onSubmit() {
     if (this.generalInfoForm.valid) {
-      this.apiService.login(this.generalInfoForm.value).subscribe((data) => {
-        console.log(data);
-
+      this.loginService.login(this.generalInfoForm.value).subscribe((data) => {
         this.data = data;
       });
     }

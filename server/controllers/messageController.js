@@ -5,7 +5,7 @@ async function findAll(req, res) {
         const messages = await db.Message.findAll();
 
         if (messages.length === 0) {
-            return res.status(404).json({
+            return res.status(200).json({
                 message: "no data!",
             });
         }
@@ -14,6 +14,8 @@ async function findAll(req, res) {
             data: messages,
         });
     } catch (error) {
+        console.log(error);
+
         res.status(500).json(error);
     }
 }
@@ -38,14 +40,12 @@ async function findOne(req, res) {
 }
 async function create(req, res) {
     try {
-        const { firstname, lastname, email, date_of_birth, roleId } = req.body;
+        const { object, description, importance_status } = req.body;
 
         const message = await db.Message.create({
-            firstname,
-            lastname,
-            email,
-            date_of_birth,
-            roleId,
+            object,
+            description,
+            importance_status,
         });
         res.status(201).json({
             message: "message created!",
@@ -57,7 +57,7 @@ async function create(req, res) {
 }
 async function update(req, res) {
     try {
-        const { firstname, lastname, email, date_of_birth } = req.body;
+        const { object, description, importance_status } = req.body;
         const { id } = req.params;
 
         const message = await db.Message.findOne({ where: { id } });
@@ -67,10 +67,9 @@ async function update(req, res) {
         }
 
         await message.update({
-            firstname,
-            lastname,
-            email,
-            date_of_birth,
+            object,
+            description,
+            importance_status,
         });
 
         res.status(200).json({

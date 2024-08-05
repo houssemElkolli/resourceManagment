@@ -1,0 +1,94 @@
+<div class="h-screen w-full bg-white p-10">
+  <div class="w-full h-full mb-12 xl:mb-0 px-4 mx-auto">
+    <div
+      class="relative flex flex-col min-w-0 break-words bg-white w-full h-full mb-6 shadow-lg rounded"
+    >
+      <div class="mb-4">
+        <form
+          [formGroup]="generalInfoForm"
+          (ngSubmit)="onSubmit()"
+          class="w-full max-w-md mx-auto"
+        >
+          <h2
+            class="text-blue-600 font-extrabold text-center m-10 w-auto"
+            style="font-size: 36px"
+          >
+            Update Message
+          </h2>
+
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="object">
+              Object:
+            </label>
+            <input
+              class="appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-b"
+              id="object"
+              type="text"
+              formControlName="object"
+              placeholder="Object"
+            />
+            <app-error-validation-message
+              [displayedName]="'Object'"
+              [controlName]="'object'"
+              [formGroup]="generalInfoForm"
+            ></app-error-validation-message>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="description">
+              Description:
+            </label>
+            <input
+              class="appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-b"
+              id="description"
+              type="text"
+              formControlName="description"
+              placeholder="Description"
+            />
+            <app-error-validation-message
+              [displayedName]="'Description'"
+              [controlName]="'description'"
+              [formGroup]="generalInfoForm"
+            ></app-error-validation-message>
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 font-bold mb-2"
+              for="importance_status"
+            >
+              Importance status:
+            </label>
+            <select
+              formControlName="importance_status"
+              class="w-full bg-white border border-gray-300 px-4 py-2 text-sm"
+            >
+              <option value="low">Low</option>
+              <option value="meduime">Meduim</option>
+              <option value="high">High</option>
+            </select>
+
+            <app-error-validation-message
+              [displayedName]="'Importance status'"
+              [controlName]="'importance_status'"
+              [formGroup]="generalInfoForm"
+            ></app-error-validation-message>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+              [disabled]="generalInfoForm.invalid"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <div *ngIf="success.status">
+          <p class="w-full text-center mt-10 text-white">
+            <span class="rounded bg-green-400 p-3">{{ success.message }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const dotenv = require("dotenv");
 
 const db = require("./models");
+const roleRoutes = require("./routes/role");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const clientRoutes = require("./routes/client");
@@ -26,6 +27,7 @@ app.get("/", async (req, res) => {
     res.status(200).json(users);
 });
 
+app.use("/roles", roleRoutes);
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/clients", clientRoutes);

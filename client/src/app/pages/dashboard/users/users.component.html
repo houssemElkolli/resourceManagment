@@ -1,0 +1,125 @@
+<div class="h-screen w-full bg-white p-10">
+  <div class="w-full h-full mb-12 xl:mb-0 px-4 mx-auto">
+    <div
+      class="relative flex flex-col min-w-0 break-words bg-white w-full h-full mb-6 shadow-lg rounded"
+    >
+      <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="flex flex-wrap items-center">
+          <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+            <h3 class="font-semibold text-base text-blueGray-700">Users</h3>
+          </div>
+          <div
+            class="relative w-full px-4 max-w-full flex-grow flex-1 text-right"
+          >
+            <button
+              class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button"
+              (click)="create()"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="block w-full overflow-x-auto">
+        <table class="items-center bg-transparent w-full border-collapse">
+          <thead>
+            <tr>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                first name
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                last name
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                email
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                createdAt
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                updatedAt
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Actions
+              </th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="data && data.length > 0; else noDataMessage">
+            <tr *ngFor="let item of data">
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700"
+              >
+                {{ item.firstname }}
+              </th>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{ item.lastname }}
+              </td>
+              <td
+                class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{ item.email }}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{ item.createdAt | date : "dd-MM-yyyy" }}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{ item.updatedAt | date : "dd-MM-yyyy" }}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                <span class="flex justify-between gap-2">
+                  <button
+                    class="bg-green-400 text-white active:bg-green-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    (click)="edit(item.id)"
+                  >
+                    edit
+                  </button>
+                  <button
+                    class="bg-red-400 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    (click)="delete(item.id)"
+                  >
+                    delete
+                  </button>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+
+          <ng-template #noDataMessage>
+            <tbody>
+              <tr class="text-center">
+                {{
+                  message
+                }}
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -37,7 +37,9 @@ module.exports = (sequelize, DataTypes) => {
                             where: { email: value },
                         });
                         if (existingClient) {
-                            throw new Error("This email already exists!");
+                            const error = new Error("This email already exists!")
+                            error.status = 401
+                            throw error;
                         }
                     },
                 },

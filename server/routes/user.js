@@ -11,7 +11,7 @@ const isAdmin = require("../middleware/isAdmin");
 
 const router = express.Router({ mergeParams: true });
 
-router.use(authCheckToken, isAdmin);
+// router.use(authCheckToken, isAdmin);
 router.get("/", findAll);
 router.get("/:id([0-9]+)", findOne);
 router.post("/", create);

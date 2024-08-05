@@ -1,0 +1,114 @@
+<div class="h-screen w-full bg-white p-10">
+  <div class="w-full h-full mb-12 xl:mb-0 px-4 mx-auto">
+    <div
+      class="relative flex flex-col min-w-0 break-words bg-white w-full h-full mb-6 shadow-lg rounded"
+    >
+      <div class="mb-4">
+        <form
+          [formGroup]="generalInfoForm"
+          (ngSubmit)="onSubmit()"
+          class="w-full max-w-md mx-auto"
+        >
+          <h2
+            class="text-blue-600 font-extrabold text-center m-10 w-auto"
+            style="font-size: 36px"
+          >
+            Create Client
+          </h2>
+
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="firstname">
+              First name:
+            </label>
+            <input
+              class="appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-b"
+              id="firstname"
+              type="text"
+              formControlName="firstname"
+              placeholder="First Name"
+            />
+            <app-error-validation-message
+              [displayedName]="'First Name'"
+              [controlName]="'firstname'"
+              [formGroup]="generalInfoForm"
+            ></app-error-validation-message>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="lastname">
+              Last name:
+            </label>
+            <input
+              class="appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-b"
+              id="lastname"
+              type="text"
+              formControlName="lastname"
+              placeholder="Last Name"
+            />
+            <app-error-validation-message
+              [displayedName]="'Last Name'"
+              [controlName]="'lastname'"
+              [formGroup]="generalInfoForm"
+            ></app-error-validation-message>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="email">
+              Email:
+            </label>
+            <input
+              class="appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-b"
+              id="email"
+              type="text"
+              formControlName="email"
+              placeholder="Email"
+            />
+            <app-error-validation-message
+              [displayedName]="'Email'"
+              [controlName]="'email'"
+              [formGroup]="generalInfoForm"
+            ></app-error-validation-message>
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 font-bold mb-2"
+              for="date_of_birth"
+            >
+              Date of birth:
+            </label>
+            <input
+              class="appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-b"
+              id="date_of_birth"
+              type="date"
+              formControlName="date_of_birth"
+              placeholder="Date of birth"
+            />
+            <app-error-validation-message
+              [displayedName]="'Date of birth'"
+              [controlName]="'date_of_birth'"
+              [formGroup]="generalInfoForm"
+            ></app-error-validation-message>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+              [disabled]="generalInfoForm.invalid"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <div *ngIf="success.status">
+          <p class="w-full text-center mt-10 text-white">
+            <span class="rounded bg-green-400 p-3">{{ success.message }}</span>
+          </p>
+        </div>
+        <div *ngIf="error.status">
+          <p class="w-full text-center mt-10 text-white">
+            <span class="rounded bg-red-400 p-3">{{ error.message }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,58 @@
-<p>dashboard works!</p>
+<div class="flex h-screen">
+  <div
+    [ngClass]="open ? 'w-20' : 'w-72'"
+    class="bg-blue-100 drop-shadow-lg h-screen p-5 pt-8"
+  >
+    <div [ngClass]="open ? 'justify-start' : 'justify-between'" class="flex">
+      <h1
+        [ngClass]="open ? 'hidden' : 'block'"
+        class="origin-left font-sans text-xl text-indigo-500 mt-1 font-bold"
+      >
+        {{ title }}
+      </h1>
+      <span
+        (click)="toggleMenu()"
+        class="origin-left font-sans text-sm text-indigo-400 mt-2.5 underline active:scale-125 cursor-pointer"
+        >{{ open ? "open" : "close" }}</span
+      >
+    </div>
+
+    <div class="mt-12">
+      <ul class="text-black font-sans">
+        <li
+          class="flex gap-3 cursor-pointer p-2 hover:p-2 hover:bg-indigo-500 hover:text-white rounded-md"
+          (click)="linkAction()"
+          [ngClass]="open ? 'justify-start' : 'justify-between'"
+        >
+          <span [ngClass]="open ? 'block' : 'hidden'">U...</span>
+          <a routerLink="users" [ngClass]="open ? 'hidden' : 'block'"
+            >Users Managment</a
+          >
+        </li>
+
+        <li
+          class="flex gap-3 cursor-pointer p-2 hover:p-2 hover:bg-indigo-500 hover:text-white rounded-md"
+          (click)="linkAction()"
+          [ngClass]="open ? 'justify-start' : 'justify-between'"
+        >
+          <span [ngClass]="open ? 'block' : 'hidden'">C...</span>
+          <a routerLink="users" [ngClass]="open ? 'hidden' : 'block'"
+            >Client Managment</a
+          >
+        </li>
+        <li
+          class="flex gap-3 cursor-pointer p-2 hover:p-2 hover:bg-indigo-500 hover:text-white rounded-md"
+          (click)="linkAction()"
+          [ngClass]="open ? 'justify-start' : 'justify-between'"
+        >
+          <span [ngClass]="open ? 'block' : 'hidden'">M...</span>
+          <a routerLink="users" [ngClass]="open ? 'hidden' : 'block'"
+            >Messages Managment</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bg-blue-100 w-svw"><router-outlet /></div>
+</div>

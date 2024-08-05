@@ -5,7 +5,7 @@ async function findAll(req, res) {
         const clients = await db.Client.findAll();
 
         if (clients.length === 0) {
-            return res.status(404).json({
+            return res.status(200).json({
                 message: "no data!",
             });
         }
@@ -38,20 +38,22 @@ async function findOne(req, res) {
 }
 async function create(req, res) {
     try {
-        const { firstname, lastname, email, date_of_birth, roleId } = req.body;
+        const { firstname, lastname, email, date_of_birth } = req.body;
 
         const client = await db.Client.create({
             firstname,
             lastname,
             email,
             date_of_birth,
-            roleId,
         });
         res.status(201).json({
             message: "client created!",
             data: client,
         });
     } catch (error) {
+        if (error.name === "SequelizeValidationError") {
+            return res.status(400).json(error.message);
+        }
         res.status(500).json(error);
     }
 }
@@ -78,6 +80,9 @@ async function update(req, res) {
             data: client,
         });
     } catch (error) {
+        if (error.name === "SequelizeValidationError") {
+            return res.status(400).json(error.message);
+        }
         res.status(500).json(error);
     }
 }
