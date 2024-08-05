@@ -11,6 +11,7 @@ import { EditComponent as ClientsEditComponent } from './pages/dashboard/clients
 import { EditComponent as MessagesEditComponent } from './pages/dashboard/messages/edit/edit.component';
 import { CreateComponent as ClientsCreateComponent } from './pages/dashboard/clients/create/create.component';
 import { CreateComponent as MessagesCreateComponent } from './pages/dashboard/messages/create/create.component';
+import { SendEmailComponent } from './pages/send-email/send-email.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'users', pathMatch: 'full' },
     ],
   },
+  { path: 'send-email', component: SendEmailComponent },
+
   { path: '', component: LoginComponent },
 ];
 

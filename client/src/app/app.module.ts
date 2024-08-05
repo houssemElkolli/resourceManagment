@@ -18,6 +18,7 @@ import { CreateComponent as ClientsCreateComponent } from './pages/dashboard/cli
 import { EditComponent as MessagesEditComponent } from './pages/dashboard/messages/edit/edit.component';
 import { CreateComponent as MessagesCreateComponent } from './pages/dashboard/messages/create/create.component';
 import { ErrorValidationMessageComponent } from './components/error-validation-message/error-validation-message.component';
+import { SendEmailComponent } from './pages/send-email/send-email.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ErrorValidationMessageComponent } from './components/error-validation-m
     UsersEditComponent,
     UsersCreateComponent,
     ErrorValidationMessageComponent,
+    SendEmailComponent,
   ],
   imports: [
     BrowserModule,

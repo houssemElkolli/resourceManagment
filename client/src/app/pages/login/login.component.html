@@ -25,6 +25,11 @@
           formControlName="email"
           placeholder="email"
         />
+        <app-error-validation-message
+          [displayedName]="'Email'"
+          [controlName]="'email'"
+          [formGroup]="generalInfoForm"
+        ></app-error-validation-message>
       </div>
 
       <div class="mb-4">
@@ -39,6 +44,11 @@
           placeholder="password"
           [class.ng-invalid]="generalInfoForm.get('password')?.invalid"
         />
+        <app-error-validation-message
+          [displayedName]="'Password'"
+          [controlName]="'password'"
+          [formGroup]="generalInfoForm"
+        ></app-error-validation-message>
       </div>
 
       <div class="flex items-center justify-between">

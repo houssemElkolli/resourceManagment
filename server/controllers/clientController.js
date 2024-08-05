@@ -1,5 +1,24 @@
 const db = require("../models");
 
+async function getAllEmail(req, res) {
+    try {
+        const clients = await db.Client.findAll({
+            attributes: ["email"],
+        });
+
+        if (clients.length === 0) {
+            return res.status(200).json({
+                message: "no data!",
+            });
+        }
+        res.status(200).json({
+            message: "clients email found!",
+            data: clients,
+        });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
 async function findAll(req, res) {
     try {
         const clients = await db.Client.findAll();
@@ -108,4 +127,4 @@ async function remove(req, res) {
     }
 }
 
-module.exports = { findOne, findAll, create, update, remove };
+module.exports = { findOne, findAll, create, update, remove, getAllEmail };

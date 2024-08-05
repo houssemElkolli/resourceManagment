@@ -9,6 +9,9 @@ export class ClientsService {
   getAll(): Observable<any> {
     return this.http.get<any>('http://localhost:3001/clients');
   }
+  getAllEmail(): Observable<any> {
+    return this.http.get<any>('http://localhost:3001/clients/getEmail');
+  }
   delete(id: number): Observable<any> {
     return this.http.delete<any>('http://localhost:3001/clients/' + id);
   }
