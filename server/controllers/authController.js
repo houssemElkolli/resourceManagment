@@ -6,7 +6,7 @@ const login = async (req, res) => {
         const { email, password } = req.body;
 
         console.log(req.body);
-        
+
         const user = await db.User.findOne({
             where: { email },
             include: [{ model: db.Role }],
@@ -18,7 +18,10 @@ const login = async (req, res) => {
         if (!isMatch)
             return res.status(400).json({ message: "Invalid credentials. " });
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+        const token = jwt.sign(
+            { id: user.id, role: user.Role.name },
+            process.env.JWT_SECRET
+        );
         res.status(200).json({
             token,
             user: { id: user.id, email: user.email, role: user.Role.name },
